@@ -1,0 +1,27 @@
+{
+  "Name": "Orthanc",
+  "StorageDirectory": "/var/lib/orthanc/db",
+  "WriteDicomPath": false,
+
+  "HttpServerEnabled": true,
+  "HttpPort": 8042,
+
+  "DicomPort": 4242,
+
+  "RegisteredUsers": {
+    "admin": "admin"
+  },
+
+  "AuthenticationEnabled": false,
+
+  "DicomWeb": {
+    "Enable": true,
+    "Root": "/dicom-web"
+  },
+
+  "HttpAllowOrigin": "*",
+
+  "Plugins": {
+    "Paths": []
+  }
+}

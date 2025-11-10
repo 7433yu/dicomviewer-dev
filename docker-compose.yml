@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  orthanc:
+    image: jodogne/orthanc-plugins:latest
+    container_name: orthanc
+    restart: unless-stopped
+    ports:
+      - "8042:8042"   # Orthanc web UI + DICOMweb
+      - "4242:4242"   # DICOM C-STORE SCP
+    volumes:
+      - orthanc_db:/var/lib/orthanc/db
+      - ./orthanc.json:/etc/orthanc/orthanc.json:ro
+      - ./plugins:/var/lib/orthanc/plugins:ro # 如果需要放插件可用这条（可选）
+    environment:
+      ORTHANC__REGISTERED_USERS__admin: "admin"   # 可选：设置一个 admin 用户，格式 KEY: PASSWORD
+    networks:
+      - orthanc-net
+
+volumes:
+  orthanc_db:
+
+networks:
+  orthanc-net:
+    driver: bridge
